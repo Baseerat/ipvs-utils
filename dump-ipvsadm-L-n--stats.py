@@ -36,4 +36,6 @@ with open(csv_file, 'a') as csv_fd:
             is_write_header = True
         writer.writerow(rst)
 
+        csv_fd.flush()
+
         time.sleep(timeout)
