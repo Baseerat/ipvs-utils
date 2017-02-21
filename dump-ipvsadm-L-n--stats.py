@@ -21,8 +21,6 @@ with open(csv_file, 'a') as csv_fd:
         stats = re.findall(r'(\d+.\d+.\d+.\d+)(:)(\d+)(\s+)'
                            r'(\d+)(\s+)(\d+)(\s+)(\d+)(\s+)(\d+)(\s+)(\d+)', out_bytes_str)
 
-        print stats
-
         rst = dict()
         for stat in stats:
             rst[stat[0] + ':Conns'] = stat[4]
