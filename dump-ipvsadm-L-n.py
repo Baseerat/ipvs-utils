@@ -18,8 +18,8 @@ with open(csv_file, 'a') as csv_fd:
         out_bytes_str = out_bytes.decode()
         # print(out_bytes_str)
 
-        stats = re.findall(r'(\d+.\d+.\d+.\d+)(:)(\d+)'
-                           r'(\s+)(Route\s+)(\d+)(\s+)(\d+)(\s+)(\d+)', out_bytes_str)
+        stats = re.findall(r'(-> )(\d+.\d+.\d+.\d+)(:)(\d+)(\s+)'
+                           r'(Route\s+)(\d+)(\s+)(\d+)(\s+)(\d+)', out_bytes_str)
 
         rst = dict()
         for stat in stats:
