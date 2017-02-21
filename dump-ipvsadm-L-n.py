@@ -10,6 +10,8 @@ if len(sys.argv) < 2:
 timeout = float(sys.argv[1])
 csv_file = sys.argv[2]
 
+is_write_header = False
+
 with open(csv_file, 'a') as csv_fd:
     while True:
         out_bytes = subprocess.check_output(['ipvsadm', '-L', '-n'])
@@ -25,7 +27,9 @@ with open(csv_file, 'a') as csv_fd:
             rst[stat[0] + ':ActiveConn'] = stat[7]
             rst[stat[0] + ':InActConn'] = stat[9]
         writer = csv.DictWriter(csv_fd, fieldnames=rst.keys())
-        writer.writeheader()
+        if not is_write_header:
+            writer.writeheader()
+            is_write_header = True
         writer.writerow(rst)
 
         time.sleep(timeout)
